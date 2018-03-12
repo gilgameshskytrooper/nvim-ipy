@@ -300,6 +300,7 @@ class IPythonPlugin(object):
 
     @neovim.function("IPyRun")
     def ipy_run(self, args):
+        print('ipy_run')
         code = args[0]
         silent = bool(args[1]) if len(args) > 1 else False
         if self.km and not self.km.is_alive():
@@ -319,9 +320,7 @@ class IPythonPlugin(object):
                 # TODO: if this is long, open separate window
                 if 'text' in p:
                     self.append_outbuf(p['text'])
-                    self.append_outbuf(p['text'])
                 else:
-                    self.append_outbuf(p['data']['text/plain'])
                     self.append_outbuf(p['data']['text/plain'])
 
     @neovim.function("IPyDbgWrite", sync=True)
