@@ -314,7 +314,6 @@ class IPythonPlugin(object):
         reply = self.waitfor(self.kc.execute(code,silent=silent))
         content = reply['content']
         payload = content.get('payload',())
-        self.append_outbuf()
         for p in payload:
             if p.get("source") == "page":
                 # TODO: if this is long, open separate window
@@ -410,7 +409,7 @@ class IPythonPlugin(object):
                 no = c['execution_count']
                 res = c['data']['text/plain']
                 prompt = self.prompt_out.format(no)
-                line = self.append_outbuf((u'{}{}\n\n').format(prompt, res.rstrip()))
+                line = self.append_outbuf((u'{}{}\n').format(prompt, res.rstrip()))
                 self.buf.add_highlight('IPyOut', line, 0, len(prompt))
             elif t in ['pyerr', 'error']:
                 #TODO: this should be made language specific
