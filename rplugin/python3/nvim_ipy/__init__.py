@@ -324,7 +324,7 @@ class IPythonPlugin(object):
 
     @neovim.function("IPyDbgWrite", sync=True)
     def ipy_write(self, args):
-        self.append_outbuf(args[0])
+        self.append_outbuf('\n' + args[0])
 
     @neovim.function("IPyComplete")
     def ipy_complete(self,args):
