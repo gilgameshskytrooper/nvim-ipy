@@ -314,14 +314,13 @@ class IPythonPlugin(object):
         reply = self.waitfor(self.kc.execute(code,silent=silent))
         content = reply['content']
         payload = content.get('payload',())
+        self.append_outbuf('\n\n')
         for p in payload:
             if p.get("source") == "page":
                 # TODO: if this is long, open separate window
                 if 'text' in p:
-                    self.append_outbuf('\n')
                     self.append_outbuf(p['text'])
                 else:
-                    self.append_outbuf('\n')
                     self.append_outbuf(p['data']['text/plain'])
 
     @neovim.function("IPyDbgWrite", sync=True)
