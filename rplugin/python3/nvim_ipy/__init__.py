@@ -319,7 +319,9 @@ class IPythonPlugin(object):
                 # TODO: if this is long, open separate window
                 if 'text' in p:
                     self.append_outbuf(p['text'])
+                    self.append_outbuf(p['text'])
                 else:
+                    self.append_outbuf(p['data']['text/plain'])
                     self.append_outbuf(p['data']['text/plain'])
 
     @neovim.function("IPyDbgWrite", sync=True)
