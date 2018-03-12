@@ -318,13 +318,15 @@ class IPythonPlugin(object):
             if p.get("source") == "page":
                 # TODO: if this is long, open separate window
                 if 'text' in p:
+                    self.append_outbuf('\n')
                     self.append_outbuf(p['text'])
                 else:
+                    self.append_outbuf('\n')
                     self.append_outbuf(p['data']['text/plain'])
 
     @neovim.function("IPyDbgWrite", sync=True)
     def ipy_write(self, args):
-        self.append_outbuf('\n' + args[0])
+        self.append_outbuf(args[0])
 
     @neovim.function("IPyComplete")
     def ipy_complete(self,args):
